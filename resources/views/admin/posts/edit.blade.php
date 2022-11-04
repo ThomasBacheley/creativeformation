@@ -31,6 +31,13 @@
                 <label for="InputDesc" class="form-label">Description</label>
                 <input type="text" class="form-control" name="InputDesc" id="InputDesc" value="{{ $post->description }}">
             </div>
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" value="1" name="checkbox" id="checkbox"
+                    {{ $post->ispublish ? 'checked' : '' }}>
+                <label class="form-check-label" for="checkbox">
+                    Publier ?
+                </label>
+            </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>

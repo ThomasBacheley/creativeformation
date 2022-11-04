@@ -15,7 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->get();
+        $posts = Post::where('ispublish', 1)->latest()->get();
         return view('admin.posts.index', ['posts' => $posts]);
     }
 
@@ -41,6 +41,7 @@ class PostController extends Controller
         $post->title = $request->InputTitle;
         $post->slug = $request->InputSlug;
         $post->description = $request->InputDesc;
+        $post->ispublish = isset($request->checkbox);
         $post->save();
 
         session()->flash('success', "L'articlbe a bien été enregistré");
@@ -54,9 +55,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $slug)
     {
-        //
+        $post = Post::query()->where('id', $id)->where('slug', $slug)->firstOrFail();
+        return view('admin.posts.show', ['post' => $post]);
     }
 
     /**
@@ -83,6 +85,7 @@ class PostController extends Controller
             'title' => $request->InputTitle,
             'slug' => $request->InputSlug,
             'description' => $request->InputDesc,
+            'ispublish' => isset($request->checkbox)
         ]);
 
         $posts = Post::latest()->get();
