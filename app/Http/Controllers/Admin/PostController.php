@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Post;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Post;
 
-class AdminPostController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,6 @@ class AdminPostController extends Controller
     public function index()
     {
         $posts = Post::latest()->get();
-        dd($posts);
         return view('admin.posts.index', ['posts' => $posts]);
     }
 
@@ -26,7 +26,7 @@ class AdminPostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**
@@ -37,7 +37,15 @@ class AdminPostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = new Post;
+        $post->title = $request->InputTitle;
+        $post->slug = $request->InputSlug;
+        $post->description = $request->InputDesc;
+        $post->save();
+
+        session()->flash('success', "L'articlbe a bien été enregistré");
+
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -57,9 +65,9 @@ class AdminPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        return view('admin.posts.edit', ['post' => $post]);
     }
 
     /**
@@ -71,7 +79,14 @@ class AdminPostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Post::where('id', $id)->update([
+            'title' => $request->InputTitle,
+            'slug' => $request->InputSlug,
+            'description' => $request->InputDesc,
+        ]);
+
+        $posts = Post::latest()->get();
+        return view('admin.posts.index', ['posts' => $posts]);
     }
 
     /**
@@ -82,6 +97,8 @@ class AdminPostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Post::destroy($id);
+        $posts = Post::latest()->get();
+        return view('admin.posts.index', ['posts' => $posts]);
     }
 }
