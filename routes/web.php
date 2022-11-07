@@ -26,9 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/post/{id}-{slug}', [PostController::class, 'show'])->name('posts.show');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [PostController::class, 'indexadmin'])->middleware(['auth', 'verified'])->name('posts.dashboard');
 
 Route::get('/hello-creative', fn () => view('hello-creative'));
 
