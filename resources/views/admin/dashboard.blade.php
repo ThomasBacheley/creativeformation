@@ -23,12 +23,26 @@
                 <div class="list-group-item list-group-item-action d-flex gap-3 py-3">
                     <div class="d-flex gap-2 w-100 justify-content-between">
                         <div>
-                            <p>{!! '<span class="badge bg-primary" style="background: #' .
-                                $post->category->color .
-                                ' !important">' .
-                                $post->category->name .
-                                '</span>' !!}
-                            </p>
+                            <div style="display:flex; flex-direction: row; gap:5px">
+                                <p>Catégorie :</p>
+                                <p>{!! '<span class="badge bg-primary" style="background: #' .
+                                    $post->category->color .
+                                    ' !important">' .
+                                    $post->category->name .
+                                    '</span>' !!}
+                                </p>
+                            </div>
+                            <div style="display:flex; flex-direction: row; gap:5px">
+                                <p>Tag(s) : </p>
+                                @foreach ($post->tag as $tag)
+                                    <p>{!! '<span class="badge bg-primary" style="background: #' .
+                                        $tag->color .
+                                        ' !important">' .
+                                        $tag->name .
+                                        '</span>' !!}
+                                    </p>
+                                @endforeach
+                            </div>
                             <a class="mb-0" href="{{ route('posts.show', [$post->id, $post->slug]) }}">
                                 {{ $post->title }}</a>
                             <p class="mb-0 opacity-75">{{ $post->description }}</p>
@@ -36,7 +50,7 @@
                         <div>
                             <small
                                 class="opacity-50 text-nowrap">{{ $post->created_at ? $post->created_at->format('d/m/Y') : 'Null' }}</small>
-                            <div style="display: flex; flex-direction:column;margin: 5px;">
+                            <div style="display: flex; flex-direction:column; gap: 5px;">
                                 <p>{!! $post->ispublish
                                     ? '<span class="badge bg-success">Publié</span>'
                                     : '<span class="badge bg-secondary">Non Publié</span>' !!}
