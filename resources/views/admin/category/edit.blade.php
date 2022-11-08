@@ -14,16 +14,20 @@
     </div>
 
     <div class="container" id="news" style="margin-bottom:150px">
-        <div class="card">
-            <div class="card-header">{{ $post->title }}</div>
-            <div class="card-body">
-                <p>{{ $post->description }}</p>
-                <small style="color: lightgray">{{ $post->slug }}</small>
+        <h1 class="mb-4">Modifier une catégorie :</h1>
+        <form method="post" action="{{ route('category.update', $category->id) }}">
+
+            @method('PUT')
+            @csrf
+            <div class="mb-3">
+                <label for="InputName" class="form-label">Nom</label>
+                <input type="text" class="form-control" name="InputName" id="InputName" value="{{ $category->name }}">
             </div>
-            <div class="card-footer">Le {{ $post->created_at ? $post->created_at->format('d/m/Y') : 'Null' }}</div>
-        </div>
-        <div>
-            <img src="/images/{{ $post->imgname }}" alt="{{ $post->imgname }}">
-        </div>
+            <div class="mb-3">
+                <label for="InputColor" class="form-label">Couleur</label>
+                <input type="text" class="form-control" name="InputColor" id="InputColor" value="{{ $category->color }}">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </div>
 @endsection

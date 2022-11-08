@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->tinyInteger('ispublish')->default(0);
+            $table->foreignId('category_id')->nullable()->after('ispublish')->constrained()->nullOnDelete();
         });
     }
 
@@ -26,7 +26,8 @@ return new class extends Migration
     public function down()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->dropColumn('ispublish');
+            $table->dropForeign('posts_category_id_foreign');
+            $table->dropColumn('category_id');
         });
     }
 };

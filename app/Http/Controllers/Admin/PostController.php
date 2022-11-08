@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Category;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -27,7 +30,7 @@ class PostController extends Controller
     public function indexadmin()
     {
         $posts = Post::latest()->get();
-        return view('admin.posts.dashboard', ['posts' => $posts]);
+        return view('admin.dashboard', ['posts' => $posts]);
     }
 
     /**
@@ -37,7 +40,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $categories = Category::all();
+        return view('admin.posts.create', ['categories' => $categories]);
     }
 
     /**
@@ -53,6 +57,14 @@ class PostController extends Controller
         $post->slug = $request->InputSlug;
         $post->description = $request->InputDesc;
         $post->ispublish = isset($request->checkbox);
+        $post->category_id = $request->InputCat;
+
+        if (isset($request->image)) {
+            $imagename = Str::uuid() . '.' . $request->image->extension();
+            $request->image->move(public_path('images'), $imagename);
+            $post->imgname = $imagename;
+        }
+
         $post->save();
 
         session()->flash('success', "L'articlbe a bien été enregistré");
@@ -80,7 +92,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.posts.edit', ['post' => $post]);
+        $categories = Category::all();
+        return view('admin.posts.edit', ['post' => $post, 'categories' => $categories]);
     }
 
     /**
@@ -90,17 +103,28 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        Post::where('id', $id)->update([
-            'title' => $request->InputTitle,
-            'slug' => $request->InputSlug,
-            'description' => $request->InputDesc,
-            'ispublish' => isset($request->checkbox)
-        ]);
+        $post->title = $request->InputTitle;
+        $post->slug = $request->InputSlug;
+        $post->description = $request->InputDesc;
+        $post->ispublish = isset($request->checkbox);
+        $post->category_id = $request->InputCat;
 
-        $posts = Post::latest()->get();
-        return view('admin.posts.index', ['posts' => $posts]);
+        if (isset($request->image)) {
+
+            if ($post->imgname != null) {
+                File::delete(public_path('images/' . $post->imgname));
+            }
+
+            $imagename = Str::uuid() . '.' . $request->image->extension();
+            $request->image->move(public_path('images'), $imagename);
+            $post->imgname = $imagename;
+        }
+
+        $post->save();
+
+        return redirect()->route('posts.dashboard');
     }
 
     /**
@@ -112,7 +136,6 @@ class PostController extends Controller
     public function destroy($id)
     {
         Post::destroy($id);
-        $posts = Post::latest()->get();
-        return view('admin.posts.index', ['posts' => $posts]);
+        return redirect()->route('posts.dashboard');
     }
 }

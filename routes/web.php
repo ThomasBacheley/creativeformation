@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\PostController as PostController;
+use App\Http\Controllers\Admin\CategoryController as CategoryController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,9 +23,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
     Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
-    Route::put('/posts/update/{id}', [PostController::class, 'update'])->name('posts.update');
+    Route::put('/posts/update/{post}', [PostController::class, 'update'])->name('posts.update');
     Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
     Route::get('/post/{id}-{slug}', [PostController::class, 'show'])->name('posts.show');
+
+    Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
+    Route::get('/categories/create', [CategoryController::class, 'create'])->name('category.create');
+    Route::post('/categories/store', [CategoryController::class, 'store'])->name('category.store');
+    Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::put('/categories/update/{id}', [CategoryController::class, 'update'])->name('category.update');
+    Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
 });
 
 Route::get('/dashboard', [PostController::class, 'indexadmin'])->middleware(['auth', 'verified'])->name('posts.dashboard');

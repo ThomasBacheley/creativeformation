@@ -15,7 +15,7 @@
 
     <div class="container" id="news" style="margin-bottom:150px">
         <h1 class="mb-4">Modifier un article :</h1>
-        <form method="post" action="{{ route('posts.update', $post->id) }}">
+        <form method="post" action="{{ route('posts.update', $post) }}" enctype="multipart/form-data">
 
             @method('PUT')
             @csrf
@@ -31,12 +31,24 @@
                 <label for="InputDesc" class="form-label">Description</label>
                 <input type="text" class="form-control" name="InputDesc" id="InputDesc" value="{{ $post->description }}">
             </div>
+            <div class="mb-3">
+                <label for="InputCat" class="form-label">Catégorie</label>
+                <select name="InputCat" id="InputCat">
+                    <option value="">Aucune</option>
+                    @foreach ($categories as $category)
+                        <option value={{ $category->id }}>{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
             <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" value="1" name="checkbox" id="checkbox"
-                    {{ $post->ispublish ? 'checked' : '' }}>
+                <input class="form-check-input" type="checkbox" value="1" name="checkbox" id="checkbox" checked>
                 <label class="form-check-label" for="checkbox">
                     Publier ?
                 </label>
+            </div>
+            <div>
+                <label for="image" class="form-label">Image</label>
+                <input type="file" name="image">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
