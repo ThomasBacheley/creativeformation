@@ -14,16 +14,18 @@
     </div>
 
     <div class="container" id="news" style="margin-bottom:150px">
-        <h1 class="mb-4">Ajouter une categorie : </h1>
-        <form method="POST" action="{{ route('category.store') }}">
+        <h1 class="mb-4">Modifier un tag :</h1>
+        <form method="post" action="{{ route('tags.update', $tag->id) }}">
+
+            @method('PUT')
             @csrf
             <div class="mb-3">
                 <label for="InputName" class="form-label">Nom</label>
-                <input type="text" class="form-control" name="InputName" id="InputName">
+                <input type="text" class="form-control" name="InputName" id="InputName" value="{{ $tag->name }}">
             </div>
             <div class="mb-3">
                 <label for="InputColor" class="form-label">Couleur</label>
-                <input type="text" class="form-control" name="InputColor" id="InputColor">
+                <input type="text" class="form-control" name="InputColor" id="InputColor" value="{{ $tag->color }}">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

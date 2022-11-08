@@ -14,8 +14,8 @@
     </div>
 
     <div class="container" id="news" style="margin-bottom:150px">
-        <h1 class="mb-4">Ajouter une categorie : </h1>
-        <form method="POST" action="{{ route('category.store') }}">
+        <h1 class="mb-4">Ajouter un Tag : </h1>
+        <form method="POST" action="{{ route('tag.store') }}">
             @csrf
             <div class="mb-3">
                 <label for="InputName" class="form-label">Nom</label>

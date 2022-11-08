@@ -18,6 +18,7 @@
             <div class="card-header">{{ $post->title }}</div>
             <div class="card-body">
                 <p>{{ $post->description }}</p>
+                
                 <small style="color: lightgray">{{ $post->slug }}</small>
             </div>
             <div class="card-footer">Le {{ $post->created_at ? $post->created_at->format('d/m/Y') : 'Null' }}</div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Tag;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
@@ -41,7 +42,8 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('admin.posts.create', ['categories' => $categories]);
+        $tags = Tag::all();
+        return view('admin.posts.create', ['categories' => $categories, 'tags' => $tags]);
     }
 
     /**
@@ -63,6 +65,10 @@ class PostController extends Controller
             $imagename = Str::uuid() . '.' . $request->image->extension();
             $request->image->move(public_path('images'), $imagename);
             $post->imgname = $imagename;
+        }
+
+        if (isset($request->InputTags)) {
+            $post->tag()->attach($request->tags);
         }
 
         $post->save();
@@ -93,7 +99,8 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::all();
-        return view('admin.posts.edit', ['post' => $post, 'categories' => $categories]);
+        $tags = Tag::all();
+        return view('admin.posts.edit', ['post' => $post, 'categories' => $categories, 'tags' => $tags]);
     }
 
     /**
@@ -120,6 +127,10 @@ class PostController extends Controller
             $imagename = Str::uuid() . '.' . $request->image->extension();
             $request->image->move(public_path('images'), $imagename);
             $post->imgname = $imagename;
+        }
+
+        if (isset($request->InputTags)) {
+            $post->tag()->sync($request->InputTags);
         }
 
         $post->save();

@@ -14,8 +14,9 @@
     </div>
 
     <div class="container" id="news" style="margin-bottom:150px">
-        <a class="btn btn-primary" href="{{ route('posts.create') }}" role="button">Ajouter</a>
-        <a class="btn btn-primary" href="{{ route('category.index') }}" role="button">Catégories</a>
+        <a class="btn btn-primary" href="{{ route('posts.create') }}" role="button">Ajouter Post</a>
+        <a class="btn btn-primary" href="{{ route('category.index') }}" role="button">Ajouter Catégorie</a>
+        <a class="btn btn-primary" href="{{ route('tag.index') }}" role="button">Ajouter Tag</a>
         <h1 class="mb-4">Les derniers articles : </h1>
         @foreach ($posts as $post)
             <div class="list-group w-auto mb-4">

@@ -40,6 +40,15 @@
                     @endforeach
                 </select>
             </div>
+            <div class="mb-3">
+                <label for="InputTags" class="form-label">Catégorie</label>
+                <select multiple name="InputTags[]" id="InputTags">
+                    <option value="">Aucun</option>
+                    @foreach ($tags as $tag)
+                        <option value={{ $tag->id }}>{{ $tag->name }}</option>
+                    @endforeach
+                </select>
+            </div>
             <div class="form-check mb-3">
                 <input class="form-check-input" type="checkbox" value="1" name="checkbox" id="checkbox" checked>
                 <label class="form-check-label" for="checkbox">
