@@ -15,6 +15,8 @@
 
     <div class="container" id="news" style="margin-bottom:150px">
 
+        @include('partials.right-menu');
+
         <a class="btn btn-primary" href="{{ route('posts.create') }}" role="button">Ajouter Un Post</a>
         <h1 class="mb-4">Les derniers articles : </h1>
         @foreach ($posts as $post)

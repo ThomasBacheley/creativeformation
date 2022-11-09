@@ -20,7 +20,9 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::where('ispublish', 1)->latest()->get();
-        return view('admin.posts.index', ['posts' => $posts]);
+        $categories = Category::orderBy('name', 'asc')->get();
+        $tags = Tag::orderBy('name', 'asc')->get();
+        return view('admin.posts.index', ['posts' => $posts, 'categories' => $categories, 'tags' => $tags]);
     }
 
     /**
@@ -31,7 +33,9 @@ class PostController extends Controller
     public function indexadmin()
     {
         $posts = Post::latest()->get();
-        return view('admin.posts.indexadmin', ['posts' => $posts]);
+        $categories = Category::orderBy('name', 'asc')->get();
+        $tags = Tag::orderBy('name', 'asc')->get();
+        return view('admin.posts.indexadmin', ['posts' => $posts, 'categories' => $categories, 'tags' => $tags]);
     }
 
     /**
