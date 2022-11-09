@@ -31,7 +31,7 @@ class PostController extends Controller
     public function indexadmin()
     {
         $posts = Post::latest()->get();
-        return view('admin.dashboard', ['posts' => $posts]);
+        return view('admin.posts.indexadmin', ['posts' => $posts]);
     }
 
     /**

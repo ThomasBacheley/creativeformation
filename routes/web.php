@@ -42,7 +42,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/tags/{id}', [TagController::class, 'destroy'])->name('tag.destroy');
 });
 
-Route::get('/dashboard', [PostController::class, 'indexadmin'])->middleware(['auth', 'verified'])->name('posts.dashboard');
+Route::get('/dashboard', function () {
+    return view('admin.dashboard');
+})->name('dashboard');
+
+Route::get('/dashboard/posts', [PostController::class, 'indexadmin'])->middleware(['auth', 'verified'])->name('posts.indexadmin');
 
 Route::get('/hello-creative', fn () => view('hello-creative'));
 
