@@ -25,7 +25,7 @@
             </div>
             <div class="mb-3">
                 <label for="InputColor" class="form-label">Couleur</label>
-                <input type="text" class="form-control" name="InputColor" id="InputColor" value="{{ $tag->color }}">
+                <input type="color" class="form-control" name="InputColor" id="InputColor" value="{{ $tag->color }}">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

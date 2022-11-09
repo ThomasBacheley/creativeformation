@@ -17,7 +17,7 @@
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
                 <span class="fs-4">Blog Créative</span>
             </a>
-            <ul class="nav nav-pills">
+            <ul class="nav nav-pills gap-3">
                 <li class="nav-item"><a href="{{ route('posts.index') }}" class="nav-link active">Accueil</a></li>
                 <li class="nav-item"><a href="{{ route('dashboard') }}" class="nav-link active">Dashboard</a></li>
                 <li class="nav-item">

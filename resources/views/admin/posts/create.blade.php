@@ -39,7 +39,7 @@
                 </select>
             </div>
             <div class="mb-3">
-                <label for="InputTags" class="form-label">Catégorie</label>
+                <label for="InputTags" class="form-label">Tags</label>
                 <select multiple name="InputTags[]" id="InputTags">
                     <option value="">Aucun</option>
                     @foreach ($tags as $tag)

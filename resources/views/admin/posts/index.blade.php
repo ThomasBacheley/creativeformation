@@ -23,7 +23,7 @@
                         <div>
                             <div style="display:flex; flex-direction: row; gap:5px">
                                 <p>Catégorie :</p>
-                                <p>{!! '<span class="badge bg-primary" style="background: #' .
+                                <p>{!! '<span class="badge bg-primary" style="background: ' .
                                     $post->category->color .
                                     ' !important">' .
                                     $post->category->name .
@@ -33,7 +33,7 @@
                             <div style="display:flex; flex-direction: row; gap:5px">
                                 <p>Tag(s) : </p>
                                 @foreach ($post->tag as $tag)
-                                    <p>{!! '<span class="badge bg-primary" style="background: #' .
+                                    <p>{!! '<span class="badge bg-primary" style="background: ' .
                                         $tag->color .
                                         ' !important">' .
                                         $tag->name .

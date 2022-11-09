@@ -30,6 +30,18 @@ class TagController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id, $name)
+    {
+        $tag = Tag::query()->where('id', $id)->where('name', $name)->firstOrFail();
+        return view('admin.tags.show', ['tag' => $tag]);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

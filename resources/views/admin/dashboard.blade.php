@@ -12,33 +12,29 @@
             </div>
         </div>
     </div>
-
-    <div class="container" id="news" style="margin-bottom:150px">
-        <div style="display: flex; flex-direction:row;gap:20px">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Catégories</h5>
-                    <p class="card-text">Liste des Catégories disponible !</p>
-                    <a href="{{ route('category.index') }}" class="btn btn-primary">Ici</a>
-                </div>
+    <div class="container" style="display: flex; flex-direction:row;gap:50px;margin-bottom:150px;justify-content:center;">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Catégories</h5>
+                <p class="card-text">Liste des Catégories disponible !</p>
+                <a href="{{ route('category.index') }}" class="btn btn-primary">Ici</a>
             </div>
+        </div>
 
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Tags</h5>
-                    <p class="card-text">Liste des Tags disponible !</p>
-                    <a href="{{ route('tag.index') }}" class="btn btn-primary">Ici</a>
-                </div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Tags</h5>
+                <p class="card-text">Liste des Tags disponible !</p>
+                <a href="{{ route('tag.index') }}" class="btn btn-primary">Ici</a>
             </div>
+        </div>
 
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Posts</h5>
-                    <p class="card-text">Liste des Posts disponible !</p>
-                    <a href="{{ route('posts.indexadmin') }}" class="btn btn-primary">Ici</a>
-                </div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Posts</h5>
+                <p class="card-text">Liste des Posts disponible !</p>
+                <a href="{{ route('posts.indexadmin') }}" class="btn btn-primary">Ici</a>
             </div>
-
         </div>
     </div>
 @endsection

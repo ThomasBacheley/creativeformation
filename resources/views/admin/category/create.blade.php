@@ -23,7 +23,7 @@
             </div>
             <div class="mb-3">
                 <label for="InputColor" class="form-label">Couleur</label>
-                <input type="text" placeholder="sans le #" class="form-control" name="InputColor" id="InputColor">
+                <input type="color" class="form-control" name="InputColor" id="InputColor">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

@@ -24,7 +24,7 @@
                         <div>
                             <div style="display:flex; flex-direction: row; gap:5px">
                                 <p>Catégorie :</p>
-                                <p>{!! '<span class="badge bg-primary" style="background: #' .
+                                <p>{!! '<span class="badge bg-primary" style="background: ' .
                                     $post->category->color .
                                     ' !important">' .
                                     $post->category->name .
@@ -34,7 +34,7 @@
                             <div style="display:flex; flex-direction: row; gap:5px">
                                 <p>Tag(s) : </p>
                                 @foreach ($post->tag as $tag)
-                                    <p>{!! '<span class="badge bg-primary" style="background: #' .
+                                    <p>{!! '<span class="badge bg-primary" style="background: ' .
                                         $tag->color .
                                         ' !important">' .
                                         $tag->name .
@@ -54,7 +54,7 @@
                                     ? '<span class="badge bg-success">Publié</span>'
                                     : '<span class="badge bg-secondary">Non Publié</span>' !!}
                                 </p>
-                                <div style="display: flex; flex-direction:row">
+                                <div style="display: flex; flex-direction:row; gap:20px">
                                     <a class="btn btn-secondary" href="{{ route('posts.edit', $post) }}"><i
                                             class="bi bi-pencil"></i></a>
                                     <form method="post" action="{{ route('posts.destroy', $post->id) }}">

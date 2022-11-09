@@ -21,7 +21,7 @@
                 <div class="list-group-item list-group-item-action d-flex gap-3 py-3">
                     <div class="d-flex gap-2 w-100 justify-content-between">
                         <div>
-                            <p>{!! '<span class="badge bg-primary" style="background: #' .
+                            <p>{!! '<span class="badge bg-primary" style="background: ' .
                                 $tag->color .
                                 ' !important">' .
                                 $tag->name .
@@ -29,7 +29,7 @@
                             </p>
                         </div>
                         <div>
-                            <div style="display: flex; flex-direction:row">
+                            <div style="display: flex; flex-direction:row; gap:20px">
                                 <a class="btn btn-secondary" href="{{ route('tag.edit', $tag) }}"><i
                                         class="bi bi-pencil"></i></a>
                                 <form method="post" action="{{ route('tag.destroy', $tag->id) }}">

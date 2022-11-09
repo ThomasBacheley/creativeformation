@@ -53,10 +53,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id, $slug)
+    public function show($id, $name)
     {
-        $post = Category::query()->where('id', $id)->where('slug', $slug)->firstOrFail();
-        return view('admin.posts.show', ['post' => $post]);
+        $cat = Category::query()->where('id', $id)->where('name', $name)->firstOrFail();
+        return view('admin.category.show', ['category' => $cat]);
     }
 
     /**

@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('category.edit');
     Route::put('/categories/update/{id}', [CategoryController::class, 'update'])->name('category.update');
     Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+    Route::get('/categories/{id}-{name}', [CategoryController::class, 'show'])->name('category.show');
 
     Route::get('/tags', [TagController::class, 'index'])->name('tag.index');
     Route::get('/tags/create', [TagController::class, 'create'])->name('tag.create');
@@ -40,11 +41,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/tags/{tag}/edit', [TagController::class, 'edit'])->name('tag.edit');
     Route::put('/tags/update/{id}', [TagController::class, 'update'])->name('tag.update');
     Route::delete('/tags/{id}', [TagController::class, 'destroy'])->name('tag.destroy');
-});
+    Route::get('/tags/{id}-{name}', [TagController::class, 'show'])->name('tag.show');
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-})->name('dashboard');
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    })->middleware('verified')->name('dashboard');
+});
 
 Route::get('/dashboard/posts', [PostController::class, 'indexadmin'])->middleware(['auth', 'verified'])->name('posts.indexadmin');
 
